@@ -8,11 +8,9 @@ class ArticlePage extends Component {
 
     }
     render () {
-        // console.log('ArticlePage.render');
         if (this.props.loading) {
             return <p>Loading...</p>;
         }
-        // console.log('Not loading!');
         return (
             <div className="container">
                 <div className="notification">
@@ -25,7 +23,6 @@ class ArticlePage extends Component {
                         <p>Article Comments - {this.props.article.comments}</p>
                     </div>
                     <div>
-                        {/* <ArticleComments/>*/}
                     </div>
                 </div>
             </div>
