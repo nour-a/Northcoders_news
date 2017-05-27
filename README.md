@@ -4,6 +4,4 @@ Northcoders News is a social news aggregation, web content rating. It is similar
 ## To run
 $ npm install
 $ npm run dev
-# Northcorers_news
-# Northcorers_News
-# Northcorers_news
+
