@@ -6,11 +6,9 @@ import {connect} from 'react-redux';
 const App = React.createClass({
 
   componentDidMount () {
-    // console.log('App.componentDidMount')
     this.props.fetchArticles(this.props.params.topic);
   },
   render: function () {
-    // console.log('App.render');
     return (
       <div>
         <NavBar/>
