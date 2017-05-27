@@ -22,16 +22,7 @@ const TopList = React.createClass({
     }
 
 });
-  /* render () {
-    return (
-      <div id='Top'>
-        {this.props.articles.map(function (article, i) {
-          return <TopCard title={article.title} votes={article.votes} comments={article.comments} createdby={article.created_by} belongTo={article.belongs_to} key={i} />
-        })}
-      </div>
-    );
-  }
-});*/
+
 
 function mapStateToProps (state) {
   return {
