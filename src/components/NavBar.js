@@ -14,17 +14,6 @@ class NavBar extends Component {
                         <Link to='/cooking' className="nav-item">Cooking</Link>
                         <Link to='/coding' className="nav-item">Coding</Link>
                     </div>
-                    {/* <span className="nav-toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-                    <div className="nav-right nav-menu">
-                        <Link to='/' className="nav-item" >Top</Link>
-                        <Link to='/football' className="nav-item">Football</Link>
-                        <Link to='/cooking' className="nav-item">Cooking</Link>
-                        <Link to='/coding' className="nav-item">Coding</Link>
-                    </div>*/}
                 </div>
             </nav>
         );
