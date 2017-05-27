@@ -8,7 +8,7 @@ export function fetchArticles (topic) {
   if (topic) {
     url += `/topics/${topic}/articles`;
   } else {
-    url += '/articles'
+    url += '/articles';
   }
   return (dispatch) => {
     dispatch(fetchArticlesRequest());
@@ -37,7 +37,6 @@ export function fetchArticlesError (err) {
     err: err
   };
 }
-////////
 
 export function fetchArticlesRequest () {
   return {
@@ -45,7 +44,6 @@ export function fetchArticlesRequest () {
   };
 }
 
-//////////fetching comments ///////////////////////
 export function fetchComments (articleId) {
   return (dispatch) => {
     dispatch(fetchArticlesRequest());
@@ -79,7 +77,6 @@ export function fetchCommentsRequest () {
     type: types.FETCH_COMMENTS_REQUEST
   };
 }
-///////////////////////////////////////articleVotes///////////////////
 
 export function voteArticle (id,vote) {
   return (dispatch) => {
