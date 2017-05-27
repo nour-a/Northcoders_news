@@ -12,7 +12,7 @@ import './css/main.css';
 import App from './components/App';
 import FrontPage from './components/FrontPage';
 import ArticlePage from './components/ArticlePage';
-// import ArticleBody from './components/ArticleBody';
+import ArticleBody from './components/ArticleBody';
 
 import reducer from './reducer';
 const store = createStore(reducer, applyMiddleware(thunk, createLogger()));
