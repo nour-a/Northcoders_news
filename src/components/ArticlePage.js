@@ -4,13 +4,17 @@ import ArticleComments from './ArticleComments';
 
 
 class ArticlePage extends Component {
+    constructor(props) {
+        super(props);
+    }
     componentDidMount () {
+        this.props.fetchArticles(this.props.params.topic);  
 
     }
     render () {
-        if (this.props.loading) {
-            return <p>Loading...</p>;
-        }
+        // if (this.props.loading) {
+        //     return <p>Loading...</p>;
+        // }
         return (
             <div className="container">
                 <div className="notification">
@@ -22,9 +26,10 @@ class ArticlePage extends Component {
                         <p>Category - {this.props.article.belongs_to}</p>
                         <p>Article Comments - {this.props.article.comments}</p>
                     </div>
-                    <div>
-                    </div>
                 </div>
+                <div className="panel-footer">
+                     <ArticleComments articleId={this.props.params.articleId} comments={this.props.comments} />
+                    </div>
             </div>
         );
     }
@@ -38,5 +43,12 @@ function mapStateToProps (state, props) {
         )
     };
 }
+function mapDispatchToProps (dispatch) {
+    return {
+        fetchArticles: (topic) => {
+            dispatch(actions.fetchArticles(topic));
+        }
+    };
+}
 
-export default connect(mapStateToProps)(ArticlePage);
+export default connect(mapStateToProps,mapDispatchToProps)(ArticlePage);

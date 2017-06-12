@@ -5,13 +5,13 @@ import CommentCard from './CommentCard';
 
 const ArticleComments = React.createClass ({
     componentWillMount () {
-        this.props.fetchComments();
+        this.props.fetchComments(this.props.articleId);
     },
     render () {
         return (
             <div className="comments-container">
             {this.props.comments.map( function (comment, i) {
-                return <CommentCard key={i} body={comment.body}/>;
+                return <CommentCard key={i} {...comment}/>;
             })}
             </div>
         );
@@ -21,13 +21,13 @@ const ArticleComments = React.createClass ({
 
 function mapStateToProps (state) {
     return {
-        comments: state.comments,
+        comments: state.comments.comments,
     };
 }
 function mapDispatchToProps (dispatch,props) {
     return {
-        fetchComments: () => {
-            dispatch(actions.fetchComments(props.article_id));
+        fetchComments: (id) => {
+            dispatch(actions.fetchComments(id));
         }
     };
 }
