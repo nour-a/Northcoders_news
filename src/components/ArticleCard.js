@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 import VoteButtons from './VoteButtons';
+import PropTypes from 'prop-types';
+
 
 const ArticleCard = function (props) {
   return (
@@ -8,6 +10,7 @@ const ArticleCard = function (props) {
       <article className='media'>
         <div className='media-left'>
           <VoteButtons 
+            id={props._id}
             votes={props.votes}
             handleClick={props.voteArticle}
           />

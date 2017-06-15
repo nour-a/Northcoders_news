@@ -25,10 +25,14 @@ function reducer (prevState = initialState, action) {
             });
         case types.VOTE_ARTICLE_SUCCESS: {
             const articleId = action.data._id;
+            ////
+            const vote = action.data.vote === 'up' ? 1 : -1;
+            ////
             return Object.assign({}, prevState, {
                 byId: Object.assign({}, prevState.byId, {
                     [articleId]: Object.assign({}, prevState.byId[articleId], {
-                        votes: action.data.votes
+                        //votes: action.data.votes
+                        votes: prevState.byId[articleId].votes + vote
                     })
                 })
             });

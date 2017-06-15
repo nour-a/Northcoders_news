@@ -1,12 +1,13 @@
 import React from 'react';
 
 function VoteButtons (props) {
+    const {handleClick, id} = props;
     return (
         <div className="block">
             <p>Votes:</p>
-            <button className='button is-success' onClick={props.handleClick.bind(null, 'up')}>+</button>
+            <button className='button is-success' onClick={handleClick.bind(null, id, 'up')}>+</button>
             {props.votes}
-            <button className='button is-danger' onClick={props.handleClick.bind(null, 'down')}>-</button>
+            <button className='button is-danger' onClick={handleClick.bind(null, id, 'down')}>-</button>
         </div>
     )
 }

@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
+
 import ArticleComments from './ArticleComments';
 
 
 class ArticlePage extends Component {
     constructor(props) {
         super(props);
+        ////
+        this.state = {};
+        this.handleCommentForm = this.handleCommentForm.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        ////
     }
     componentDidMount () {
-        this.props.fetchArticles(this.props.params.topic);  
-
+        this.props.fetchArticles(this.props.params.topic);
     }
+    ////
+    handleCommentForm (e) {
+        this.setState({
+            comment: e.target.value
+        });
+    }
+    handleClick () {
+        this.props.addComment(this.props.params.articleId, this.state.comment);
+        setTimeout(() => { window.location.reload(); }, 1000);
+    }
+    ////
     render () {
         // if (this.props.loading) {
         //     return <p>Loading...</p>;
@@ -27,8 +44,18 @@ class ArticlePage extends Component {
                         <p>Article Comments - {this.props.article.comments}</p>
                     </div>
                 </div>
+                {/*//*/}
+                <h4 className="text-danger comments-header">Comments</h4>
+                            <div className="input-group add-comment">
+                                <input onChange={this.handleCommentForm} type="text" className="form-control" placeholder="Add your comment..." />
+                                <span className="input-group-btn">
+                                    <button onClick={this.handleClick} className="btn btn-danger" type="button">Add comment</button>
+                                </span>
+                            </div>
+                            {/*//*/}
                 <div className="panel-footer">
-                     <ArticleComments articleId={this.props.params.articleId} comments={this.props.comments} />
+                     <ArticleComments articleId={this.props.params.articleId} comments={this.props.comments}/>
+                     {/*voteComment={this.props.voteComment}*/}
                     </div>
             </div>
         );
@@ -40,14 +67,21 @@ function mapStateToProps (state, props) {
         article: state.articles.byId[props.params.articleId],
         loading: (
             state.articles.loading
-        )
+        ),
+        //comments: state.comments
     };
 }
 function mapDispatchToProps (dispatch) {
     return {
         fetchArticles: (topic) => {
             dispatch(actions.fetchArticles(topic));
-        }
+        },
+        addComment: (id, comment) => {
+            dispatch(actions.addComment(id, comment));
+        },
+        /*voteComment: (id, vote) => {
+      dispatch(actions.voteComment(id, vote));
+    }*/
     };
 }
 

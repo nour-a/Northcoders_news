@@ -15,10 +15,12 @@ componentDidMount () {
     }
   },
   render () {
-    console.log('render');
+    //console.log('render');
     return (
       <div id='FrontPage'>
-        <ArticleList articles={this.props.articles} voteArticle={this.props.voteArticle} />
+        <ArticleList
+        articles={this.props.articles}
+        voteArticle={this.props.voteArticle} />
       </div>
     );
   }

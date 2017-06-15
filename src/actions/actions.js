@@ -1,8 +1,8 @@
 import * as types from './types';
 import axios from 'axios';
-
 import { ROOT } from '../../config';
 
+/////fetchArticles functions////////////
 export function fetchArticles (topic) {
   let url = `${ROOT}`;
   if (topic) {
@@ -23,6 +23,12 @@ export function fetchArticles (topic) {
   };
 }
 
+export function fetchArticlesRequest () {
+  return {
+    type: types.FETCH_ARTICLES_REQUEST
+  };
+}
+
 
 export function fetchArticlesSuccess (articles) {
   return {
@@ -38,12 +44,43 @@ export function fetchArticlesError (err) {
   };
 }
 
-export function fetchArticlesRequest () {
-  return {
-    type: types.FETCH_ARTICLES_REQUEST
+/////voteArticle functions ////////////
+export function voteArticle (id,vote) {
+  return (dispatch) => {
+    dispatch(voteArticleRequest());
+    axios
+      .put(`${ROOT}/articles/${id}?vote=${vote}`)
+      .then(res => {
+        dispatch(voteArticleSuccess({_id: id, vote}));
+      })
+      .catch(error => {
+         dispatch(voteArticleError(error.message));
+      });
   };
 }
 
+export function voteArticleRequest () {
+  return {
+    type: types.VOTE_ARTICLE_REQUEST,
+    
+  };
+}
+
+export function voteArticleSuccess (data) {
+  return {
+    type: types.VOTE_ARTICLE_SUCCESS,
+    data:data
+  };
+}
+
+export function voteArticleError (error) {
+  return {
+    type: types.VOTE_ARTICLE_ERROR,
+    error:error
+  };
+}
+
+////fetchComments functions ///////////////
 export function fetchComments (articleId) {
   return (dispatch) => {
     dispatch(fetchArticlesRequest());
@@ -55,6 +92,12 @@ export function fetchComments (articleId) {
       .catch(err => {
          dispatch(fetchCommentsError(err));
       });
+  };
+}
+
+export function fetchCommentsRequest () {
+  return {
+    type: types.FETCH_COMMENTS_REQUEST
   };
 }
 
@@ -72,55 +115,14 @@ export function fetchCommentsError (err) {
   };
 }
 
-export function fetchCommentsRequest () {
-  return {
-    type: types.FETCH_COMMENTS_REQUEST
-  };
-}
-
-export function voteArticle (id,vote) {
-  return (dispatch) => {
-    dispatch(voteArticleRequest());
-    axios
-      .put(`${ROOT}/articles/${id}?vote=${vote}`)
-      .then(res => {
-        dispatch(voteArticleSuccess(res.data));
-      })
-      .catch(error => {
-         dispatch(voteArticleError(error.message));
-      });
-  };
-}
-
-export function voteArticleRequest () {
-  return {
-    type: types.VOTE_ARTICLE_REQUEST,
-    
-  };
-}
-
-export function voteArticleError (error) {
-  return {
-    type: types.VOTE_ARTICLE_ERROR,
-    error
-  };
-}
-
-export function voteArticleSuccess (data) {
-  return {
-    type: types.VOTE_ARTICLE_SUCCESS,
-    data
-  };
-}
-
-
-export function voteComment (comment_id,vote) {
+/////voteComment functions/////////////
+export function voteComment (id,vote) {
   return (dispatch) => {
     dispatch(voteCommentRequest());
     axios
-      .put(`${ROOT}/comments/${comment_id}?vote=${vote}`)
+      .put(`${ROOT}/comments/${id}?vote=${vote}`)
       .then(res => {
-        dispatch(voteCommentSuccess(comment_id, vote, res));
+        dispatch(voteCommentSuccess({_id: id, vote}));
       })
       .catch(error => {
          dispatch(voteCommentError(error.message));
@@ -134,18 +136,91 @@ export function voteCommentRequest () {
     };
 }
 
-export function voteCommentSuccess (comment_id, vote, res) {
+export function voteCommentSuccess (data) {
   return {
     type: types.VOTE_COMMENT_SUCCESS,
-    comment_id,
-    vote,
-    res
+    data:data
   };  
 }
 
-export function voteCommentError (error) {
+export function voteCommentError (err) {
   return {
     type: types.VOTE_COMMENT_ERROR,
-    data: error
+    err: err
+  };
+}
+
+////addComment functions//////////////////
+export function addComment (id, comment) {
+  return (dispatch) => {
+    dispatch(addCommentRequest());
+    axios
+      .post(`${ROOT}/articles/${id}/comments`, {
+        body: comment,
+        belongs_to: id
+      })
+      .then(res => {
+        console.log(res);
+        dispatch(addCommentSuccess({_id: id, comment}));
+      })
+      .catch(error => {
+         dispatch(addCommentError(error.message));
+      });
+  };
+}
+
+export function addCommentRequest () {
+  return {
+    type: types.ADD_COMMENT_REQUEST,    
+  };
+}
+
+export function addCommentSuccess (data) {
+  return {
+    type: types.ADD_COMMENT_SUCCESS,
+    data: data
+  };
+}
+
+export function addCommentError (err) {
+  return {
+    type: types.ADD_COMMENT_ERROR,
+    err: err
+  };
+}
+
+////deleteComment functions/////////
+export function deleteComment (id) {
+  return (dispatch) => {
+    dispatch(deleteCommentRequest());
+    axios
+      .put(`${ROOT}/comments/${id}`)
+      .then(res => {
+        console.log(res);
+        dispatch(deleteCommentSuccess({_id: id}));
+      })
+      .catch(error => {
+         dispatch(deleteCommentError(error.message));
+      });
+  };
+}
+
+export function deleteCommentRequest () {
+  return {
+    type: types.DELETE_COMMENT_REQUEST,
+  };
+}
+
+export function deleteCommentSuccess (data) {
+  return {
+    type: types.DELETE_COMMENT_SUCCESS,
+    data: data
+  };
+}
+
+export function deleteCommentError (err) {
+  return {
+    type: types.DELETE_COMMENT_ERROR,
+    err: err
   };
 }

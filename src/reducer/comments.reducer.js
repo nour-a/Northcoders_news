@@ -1,6 +1,7 @@
 import * as types from '../actions/types';
 
 const initialState = {
+  //byId:{},
   comments: [],
   loading: false,
   error: null
@@ -24,33 +25,21 @@ export function commentsReducer (prevState = initialState, action) {
         loading: false,
         error: action.error
       });
-    //   case types.VOTE_COMMENT_REQUEST: {
-    //   return Object.assign({}, prevState, {
-    //     error: null
-    //   });
-    // }
-    // case types.VOTE_COMMENT_SUCCESS: {
-    //   const newState = Object.assign({}, prevState);
-    //   const newComments = Object.assign({}, newState.comments);
-    //   const newComment = Object.assign({}, newComments[action.comment_id]);
-    //   if (action.vote === 'up') {
-    //     newComment.votes++;
-    //   }
-    //   if (action.vote === 'down') {
-    //     newComment.votes--;
-    //   }
-    //   newComments[action.comment_id] = newComment;
-    //   newState.comments = newComments;
-    //   newState.loading = false;
-    //   return newState;
-    // }
-    // case types.VOTE_COMMENT_ERROR: {
-    //   return Object.assign({}, prevState, {
-    //     comments: [],
-    //     loading: false,
-    //     error: action.data
-    //   });
-    // }
+    case types.VOTE_COMMENT_SUCCESS: {
+          const commentId = action.data._id;
+          ////
+          const vote = action.data.vote === 'up' ? 1 : -1;
+          const newState = Object.assign({}, prevState);
+          newState.comments = newState.comments.map((comment) => {
+            if (comment._id === commentId) {
+              return Object.assign({}, comment, { votes: comment.votes + vote });
+            }
+            return comment;
+          });
+          return newState;
+          ////
+      }
+
     default:
       return prevState;
   }
