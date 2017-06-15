@@ -39,7 +39,13 @@ export function commentsReducer (prevState = initialState, action) {
           return newState;
           ////
       }
-
+      case types.ADD_COMMENT_SUCCESS: {
+          const newState = Object.assign({}, prevState);
+          newState.comments = [action.data].concat(newState.comments);
+          return newState;
+          ////
+      }
+ 
     default:
       return prevState;
   }

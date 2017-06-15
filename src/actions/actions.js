@@ -156,12 +156,10 @@ export function addComment (id, comment) {
     dispatch(addCommentRequest());
     axios
       .post(`${ROOT}/articles/${id}/comments`, {
-        body: comment,
-        belongs_to: id
+        comment: comment
       })
       .then(res => {
-        console.log(res);
-        dispatch(addCommentSuccess({_id: id, comment}));
+        dispatch(addCommentSuccess(res.data.comment));
       })
       .catch(error => {
          dispatch(addCommentError(error.message));

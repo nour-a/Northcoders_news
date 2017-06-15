@@ -25,7 +25,7 @@ class ArticlePage extends Component {
     }
     handleClick () {
         this.props.addComment(this.props.params.articleId, this.state.comment);
-        setTimeout(() => { window.location.reload(); }, 1000);
+        //setTimeout(() => { window.location.reload(); }, 10);
     }
     ////
     render () {
@@ -68,7 +68,7 @@ function mapStateToProps (state, props) {
         loading: (
             state.articles.loading
         ),
-        //comments: state.comments
+        comments: state.comments
     };
 }
 function mapDispatchToProps (dispatch) {

@@ -28,9 +28,7 @@ const ArticleCard = function (props) {
   );
 }
 
-ArticleCard.propTypes = {
-  voteArticle: React.PropTypes.func.isRequired
-}
+
 
 
 export default ArticleCard;
