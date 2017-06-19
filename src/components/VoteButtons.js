@@ -1,7 +1,7 @@
 import React from 'react';
 
-function VoteButtons (props) {
-    const {handleClick, id} = props;
+function VoteButtons(props) {
+    const { handleClick, id } = props;
     return (
         <div className="block">
             <p>Votes:</p>

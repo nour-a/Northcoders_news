@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 class NavBar extends Component {
-    render () {
+    render() {
         return (
             <nav className="nav has-shadow">
                 <div className="container">

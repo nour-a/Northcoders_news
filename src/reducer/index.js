@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import articles from './articles.reducer';
 import comments from './comments.reducer';
 

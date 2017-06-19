@@ -1,17 +1,17 @@
 import React from 'react';
 import NavBar from './NavBar';
 import * as actions from '../actions/actions';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 const App = React.createClass({
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchArticles(this.props.params.topic);
   },
   render: function () {
     return (
       <div>
-        <NavBar/>
+        <NavBar />
         <h1>Articles</h1>
         {this.props.children}
       </div>
@@ -19,7 +19,7 @@ const App = React.createClass({
   }
 });
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     fetchArticles: (topic) => {
       dispatch(actions.fetchArticles(topic));

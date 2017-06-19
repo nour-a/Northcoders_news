@@ -6,7 +6,8 @@ const initialState = {
     error: null
 };
 
-function reducer (prevState = initialState, action) {
+export function articlesReducer(prevState = initialState, action) {
+    if (typeof action === 'undefined') return prevState;
     switch (action.type) {
         case types.FETCH_ARTICLES_REQUEST:
             return Object.assign({}, prevState, {
@@ -25,32 +26,28 @@ function reducer (prevState = initialState, action) {
             });
         case types.VOTE_ARTICLE_SUCCESS: {
             const articleId = action.data._id;
-            ////
             const vote = action.data.vote === 'up' ? 1 : -1;
-            ////
             return Object.assign({}, prevState, {
                 byId: Object.assign({}, prevState.byId, {
                     [articleId]: Object.assign({}, prevState.byId[articleId], {
-                        //votes: action.data.votes
                         votes: prevState.byId[articleId].votes + vote
                     })
                 })
             });
         }
-
         default:
             return prevState;
     }
 }
 
-function normaliseData (data) {
+function normaliseData(data) {
     return data.reduce(function (acc, item) {
         acc[item._id] = item;
         return acc;
     }, {});
 }
 
-export function getTopArticles (state, num) {
+export function getTopArticles(state, num) {
     return Object.keys(state.articles.byId).reduce(function (acc, id) {
         return acc.concat(state.articles.byId[id]);
     }, []).sort(function (a, b) {
@@ -58,4 +55,4 @@ export function getTopArticles (state, num) {
     }).slice(0, num);
 }
 
-export default reducer;
+export default articlesReducer;

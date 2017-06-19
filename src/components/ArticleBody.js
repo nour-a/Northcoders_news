@@ -4,14 +4,14 @@ import * as actions from '../actions/actions';
 import ArticleComments from './ArticleComments';
 
 const ArticleBody = React.createClass({
-    componentWillMount () {
+    componentWillMount() {
         this.props.fetchArticles();
     },
-    render () {
+    render() {
         const article = this.props.articles.find(function (article) {
             return article._id === this.props.params._id;
         }.bind(this));
-        
+
         return (
             <div className="box">
                 <article className="media">
@@ -24,7 +24,7 @@ const ArticleBody = React.createClass({
                             <h4>{article && article.comments} Comments</h4>
                             <p>{article && article.body}</p>
                             <h5>{article && article.created_by}</h5>
-                            <ArticleComments article_id={article._id}/>
+                            <ArticleComments article_id={article._id} />
                         </div>
                     </div>
                 </article>
@@ -33,12 +33,12 @@ const ArticleBody = React.createClass({
     }
 });
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
         articles: state.articles,
     };
 }
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         fetchArticles: () => {
             dispatch(actions.fetchArticles());

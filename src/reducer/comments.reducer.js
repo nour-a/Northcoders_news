@@ -1,13 +1,12 @@
 import * as types from '../actions/types';
 
 const initialState = {
-  //byId:{},
   comments: [],
   loading: false,
   error: null
 };
 
-export function commentsReducer (prevState = initialState, action) {
+export function commentsReducer(prevState = initialState, action) {
   if (typeof action === 'undefined') return prevState;
   switch (action.type) {
     case types.FETCH_COMMENTS_REQUEST:
@@ -26,26 +25,22 @@ export function commentsReducer (prevState = initialState, action) {
         error: action.error
       });
     case types.VOTE_COMMENT_SUCCESS: {
-          const commentId = action.data._id;
-          ////
-          const vote = action.data.vote === 'up' ? 1 : -1;
-          const newState = Object.assign({}, prevState);
-          newState.comments = newState.comments.map((comment) => {
-            if (comment._id === commentId) {
-              return Object.assign({}, comment, { votes: comment.votes + vote });
-            }
-            return comment;
-          });
-          return newState;
-          ////
-      }
-      case types.ADD_COMMENT_SUCCESS: {
-          const newState = Object.assign({}, prevState);
-          newState.comments = [action.data].concat(newState.comments);
-          return newState;
-          ////
-      }
- 
+      const commentId = action.data._id;
+      const vote = action.data.vote === 'up' ? 1 : -1;
+      const newState = Object.assign({}, prevState);
+      newState.comments = newState.comments.map((comment) => {
+        if (comment._id === commentId) {
+          return Object.assign({}, comment, { votes: comment.votes + vote });
+        }
+        return comment;
+      });
+      return newState;
+    }
+    case types.ADD_COMMENT_SUCCESS: {
+      const newState = Object.assign({}, prevState);
+      newState.comments = [action.data].concat(newState.comments);
+      return newState;
+    }
     default:
       return prevState;
   }
