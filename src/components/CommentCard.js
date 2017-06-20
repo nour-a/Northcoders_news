@@ -1,12 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-////
 import VoteButtons from './VoteButtons';
-////
-
-//import VoteCommentButtons from './VoteCommentButtons';
-
-
 
 const CommentCard = function (props) {
   console.log(props);

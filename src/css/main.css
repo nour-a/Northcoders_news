@@ -1,15 +1,67 @@
 .article-header {
-    font-size: 2em;
-    padding: 20px;
-    margin: 10px;
+    font-size: 1.7em;
+    padding: 0px;
+    margin: 0px;
+    text-decoration: underline;
+    color: #b86bff;
 }
 .article-body {
-    font-size: 1.5em;
-    margin: 10px;
-    padding: 20px;
+    font-size: 1.2em;
+    margin: 1px;
+    padding: 2px;
 }
 .article-details {
     font-size: 1em;
-    padding: 20px;
-    margin: 10px;
+    padding: 5px;
+    padding-top: 20px;
+    margin: 1px;
 }
+
+#ArticleList{
+    padding: 5px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.article-info{
+    padding: 5px;
+    font-family: "Ubuntu","Times New Roman", Times, serif;
+}
+.vote-but{
+    padding-top: 10px ;
+    padding-right: 1px;
+    padding-bottom: 0px;
+    padding-left: 1px;
+    
+    margin: 2px;
+    
+}
+.votes-no{
+    color:#b86bff;
+    font-weight: bold;
+    top: 100px;
+    margin: 2px;
+    
+}
+.button-blue {
+    background-color: white; 
+    border: none;
+    color: black; 
+    padding: 6px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 4px;
+    cursor: pointer;
+    border: 2px solid #b86bff;
+
+}
+input{
+   width: 200px;
+   height: 28px;
+}
+
+
+

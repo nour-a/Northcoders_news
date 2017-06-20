@@ -12,7 +12,7 @@ const App = React.createClass({
     return (
       <div>
         <NavBar />
-        <h1>Articles</h1>
+        
         {this.props.children}
       </div>
     );

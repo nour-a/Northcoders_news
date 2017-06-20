@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 
+
 import ArticleComments from './ArticleComments';
 
 
@@ -31,21 +32,24 @@ class ArticlePage extends Component {
                     <div className="article-body">
                         <p>{this.props.article.body}</p>
                     </div>
+
                     <div className="article-details">
-                        <p>Category - {this.props.article.belongs_to}</p>
-                        <p>Article Comments - {this.props.article.comments}</p>
+                        <span>Category: {this.props.article.belongs_to}</span>
+                        <span> | Comments: {this.props.article.comments}</span>
                     </div>
                 </div>
-                <h4 className="text-danger comments-header">Comments</h4>
                 <div className="input-group add-comment">
-                    <input onChange={this.handleCommentForm} type="text" className="form-control" placeholder="Add your comment..." />
+                    <input className="input-txt" onChange={this.handleCommentForm} type="text" placeholder="Add your comment..." />
                     <span className="input-group-btn">
-                        <button onClick={this.handleClick} className="btn btn-danger" type="button">Add comment</button>
+                        <button  className="button-blue" onClick={this.handleClick}  type="button">Add comment</button>
                     </span>
                 </div>
+                
+
                 <div className="panel-footer">
                     <ArticleComments articleId={this.props.params.articleId} comments={this.props.comments} />
                 </div>
+
             </div>
         );
     }
