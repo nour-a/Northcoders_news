@@ -17,7 +17,8 @@ import ArticleBody from './components/ArticleBody';
 import reducer from './reducer';
 const store = createStore(reducer, applyMiddleware(thunk, createLogger()));
 
-ReactDOM.render(<Provider store={store}>
+ReactDOM.render(
+<Provider store={store}>
   <Router history={browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={FrontPage} />
