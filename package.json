@@ -32,6 +32,7 @@
     "babel-register": "^6.24.1",
     "express": "^4.15.2",
     "moment": "^2.18.1",
+    "path": "^0.12.7",
     "prop-types": "^15.5.9",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
