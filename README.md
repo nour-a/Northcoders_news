@@ -1,8 +1,8 @@
 ## Northcoders News
 
-Northcoders News is a social news aggregation, web content rating. It is similar to [Reddit](https://www.reddit.com/)
+Northcoders News is a social news aggregation, web content rating. It is similar to [Reddit](https://www.reddit.com/), it is hosted on heroku [here](https://north-coders-news.herokuapp.com/).
 
-Northcoders News has articles which are divided into topics. Each article has user curated ratings and can be up or down voted using the API.
+Northcoders News has articles which are divided into topics. Each article has user curated ratings and can be up or down voted using the API.Users can also add comments about an article. Comments can also be up or down voted.
 
 The data from the Northcoders News API server. You can read the neat reference for the API [here](https://northcoders-news-api.herokuapp.com/).
 
